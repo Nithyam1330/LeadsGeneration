@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Registration} from './register.model';
-import {AngularFireDatabase} from 'angularfire2/database';
+import { Registration } from './register.model';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { URLS } from '../URLS.enum';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -12,9 +12,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-register: Registration;
-registerURL = URLS.REGISTRATION;
-registerFormGroup: FormGroup;
+  register: Registration;
+  registerURL = URLS.REGISTRATION;
+  registerFormGroup: FormGroup;
   constructor(private db: AngularFireDatabase, private router: Router) { }
 
   ngOnInit() {
@@ -26,16 +26,16 @@ registerFormGroup: FormGroup;
     console.log(this.registerFormGroup);
     if (this.registerFormGroup.valid) {
       this.register = this.registerFormGroup.value;
-    this.db.list(this.registerURL).snapshotChanges().subscribe(res => {
-      const index = res.findIndex(x => x.payload.val()['email'] === this.register.email);
-      console.log(index);
-      if (index === -1) {
-        this.saveRegisteration();
-      } else {
-        alert('already exist');
-        this.initRegister();
-      }
-    });
+      this.db.list(this.registerURL).snapshotChanges().subscribe(res => {
+        const index = res.findIndex(x => x.payload.val()['email'] === this.register.email);
+        console.log(index);
+        if (index === -1) {
+          this.saveRegisteration();
+        } else {
+          alert('already exist');
+          this.initRegister();
+        }
+      });
     } else {
       alert('form is not valid');
     }

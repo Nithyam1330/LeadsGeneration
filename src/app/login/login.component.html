@@ -2,28 +2,28 @@
     <div>
         <app-nav> </app-nav>
     </div>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="username" class="control-label">User Name<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i>
-                </label>
-                <input type="text" class="form-control" name="username" id="username" required>
+    <form [formGroup]="loginForm" class="container" (ngSubmit)="submitLogin()">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="username" class="control-label">User Name
+                        <span class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></span>
+                    </label>
+                    <input type="text" class="form-control" name="username" id="username" required formControlName="username">
+                </div>
+                <div class="form-group">
+                    <label for="passsword" class="control-label">Passsword
+                        <span class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></span>
+                    </label>
+                    <input type="password" class="form-control" name="passsword" id="passsword" required formControlName="password">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-info" value="Submit" >&nbsp;
+                    <input type="submit" class="btn btn-info" value="Sign Up" routerLink="/register">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="passsword" class="control-label">Passsword<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i>
-                </label>
-                <input type="password" class="form-control" name="passsword" id="passsword" required>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-info" value="Submit" routerLink="/dashboard">&nbsp;
-                <input type="submit" class="btn btn-info" value="Sign Up" routerLink="/register">
-
-            </div>
-
-
+            <div class="col-md-4"></div>
         </div>
-        <div class="col-md-4"></div>
-
-    </div>
+    </form>
 </div>
