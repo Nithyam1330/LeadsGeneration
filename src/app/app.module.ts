@@ -1,71 +1,44 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { AngularFireModule } from 'angularfire2'; 
-import { AngularFireDatabaseModule } from 'angularfire2/database'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRoutingModule } from './app-routing.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 import { ListComponent } from './list/list.component';
-import {CustomsortServiceService} from './customsort-service.service';
+import { CustomsortServiceService } from './services/customsort-service.service';
 import { NavComponent } from './nav/nav.component';
 import { FormcompanyComponent } from './formcompany/formcompany.component';
 import { ListcompanyComponent } from './listcompany/listcompany.component';
 import { LoginComponent } from './login/login.component';
-import { ShowleadsComponent } from './showleads/showleads.component';
 import { ShowErrorComponent } from './show-error/show-error.component';
-import {EmailValidatorDirective} from './EmailValidator';
-import {PhoneNumberValidatorDirective} from './PhoneNumberValidator'
+import { EmailValidatorDirective } from './directives/EmailValidator';
+import { PhoneNumberValidatorDirective } from './directives/PhoneNumberValidator';
 import {
-  MatAutocompleteModule,
-  MatBadgeModule,
-  MatBottomSheetModule,
-  MatButtonModule,
-  MatButtonToggleModule,
   MatCardModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatDividerModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatIconModule,
   MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
   MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatRippleModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatSnackBarModule,
   MatSortModule,
-  MatStepperModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule,
-  MatTreeModule,
+  MatTableModule
 } from '@angular/material';
-
+import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
+import { ConfimValidationDirective } from './directives/confim-validation.directive';
 
 
 var config = {
-  apiKey:"AIzaSyAkDKb3P0npcMFTF07wG8V0JXLA9NeJF3Q",
-  authDomain: "leads-creator.firebaseapp.com",
-  databaseURL: "https://leads-creator.firebaseio.com",
-  projectId: "leads-creator",
-  storageBucket: "leads-creator.appspot.com",
-  messagingSenderId: "882695494566"
+  apiKey: 'AIzaSyAkDKb3P0npcMFTF07wG8V0JXLA9NeJF3Q',
+  authDomain: 'leads-creator.firebaseapp.com',
+  databaseURL: 'https://leads-creator.firebaseio.com',
+  projectId: 'leads-creator',
+  storageBucket: 'leads-creator.appspot.com',
+  messagingSenderId: '882695494566'
 
 };
 
@@ -78,55 +51,31 @@ var config = {
     FormcompanyComponent,
     ListcompanyComponent,
     LoginComponent,
-    ShowleadsComponent,
-    ShowErrorComponent
+    ShowErrorComponent,
+    RegisterComponent,
+    DashboardComponent,
+    HomeComponent,
+    ConfimValidationDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
     AngularFireModule.initializeApp(config),
-	  AngularFireDatabaseModule,
+    AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
     CommonModule,
-    MatAutocompleteModule,
-    MatBadgeModule,
-    MatBottomSheetModule,
-    MatButtonModule,
-    MatButtonToggleModule,
     MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
     MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
     MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
     MatSortModule,
-    MatStepperModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatTreeModule
+    MatTableModule
   ],
-  providers: [CustomsortServiceService,
+  providers: [
+    CustomsortServiceService,
     EmailValidatorDirective,
     PhoneNumberValidatorDirective
   ],
