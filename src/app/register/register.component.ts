@@ -23,14 +23,11 @@ registerURL = URLS.REGISTRATION;
   submitRegistration() {
     // this.saveRegisteration();
     this.db.list(this.registerURL).snapshotChanges().subscribe(res => {
-      for (let i = 0; i < res.length; i++) {
-        const data = res[i].payload.val();
-        if (data.hasOwnProperty('email') && data['email'] === this.register.email) {
-          alert('already exist');
-            break;
-        } else {
-          this.saveRegisteration();
-        }
+      const index = res.findIndex(x => x.payload.val()['email'] === this.register.email);
+      if (index === -1) {
+        this.saveRegisteration();
+      } else {
+        alert('already exist');
       }
     });
   }

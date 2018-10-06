@@ -3,7 +3,7 @@ import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {URLS} from '../URLS.enum';
 
-import {CustomsortServiceService} from '../customsort-service.service';
+import {CustomsortServiceService} from '../services/customsort-service.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',

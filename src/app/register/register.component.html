@@ -2,7 +2,7 @@
   <div>
     <app-nav> </app-nav>
   </div>
-  <form class="container">
+  <form class="container" #registrationForm="ngForm">
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
@@ -20,12 +20,13 @@
       <div class="form-group">
         <label for="newpasssword" class="control-label">New Passsword<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i>
         </label>
-        <input type="password" class="form-control" name="newpasssword" id="newpasssword" required [(ngModel)]='register.newPasssword' #newpassword="ngModel">
+        <input type="password" class="form-control" name="newpasssword" id="newPasssword" required [(ngModel)]='register.newPasssword' #newPasssword="ngModel">
       </div>
       <div class="form-group">
         <label for="confirmpasssword" class="control-label">Confirm Passsword<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i>
         </label>
-        <input type="password" class="form-control" name="confirmpasssword" id="confirmpassword" required [(ngModel)]='register.confirmPassword' #confirmpassword="ngModel">
+        <input type="password" appConfimValidation="newpassword" class="form-control" name="confirmPassword" id="confirmPassword" required [(ngModel)]='register.confirmPassword' #confirmPassword="ngModel">
+
       </div>
 
       <div class="form-group">
