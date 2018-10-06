@@ -1,0 +1,3 @@
+<ng-container *ngIf="shouldShowErrors()">
+  <p style="color:red;"  *ngFor="let error of listOfErrors()">{{error}}</p>
+</ng-container>

@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+.mat-card
+{
+margin: 0px 20px 0px 30px;
+}
+.mat-form-field {
+
+  font-size: 14px;
+}
+
+.mat-row{
+  font-weight: bold
+}
+.mat-row:nth-child(even){
+background-color:#D2ECFB ;
+
+}
+.mat-header-cell{
+background-color:#13425e;
+color:white;
+font-size: 16px;
+font-weight: bold;
+}

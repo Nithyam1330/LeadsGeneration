@@ -1,0 +1,76 @@
+<div class="wrapper">
+   
+    <div>
+        <app-nav [isList]="true" [isForm]="true" [isList1]="false" [isForm1]="true"></app-nav>
+      </div>
+      <mat-card>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+      <table mat-table matSort [dataSource]="dataSource" (matSortChange)="sortChange($event)">
+  
+          <ng-container matColumnDef="number">
+              <th mat-header-cell *matHeaderCellDef>S.NO</th>
+              <td mat-cell *matCellDef="let i = index">{{i + 1}}</td>
+            </ng-container>
+          
+        <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd-MM-yyyy'}} </td>
+          </ng-container>
+
+        <ng-container matColumnDef="employeeName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.employeeName | titlecase }} </td>
+        </ng-container>
+  
+        
+  
+        <ng-container matColumnDef="companyName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.companyName | titlecase}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="concernPerson">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Concern Person </th>
+          <td mat-cell *matCellDef="let element"> {{element.concernPerson | titlecase}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="contact">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact  </th>
+          <td mat-cell *matCellDef="let element"> {{element.contact }} </td>
+        </ng-container>
+  
+  
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+  
+  
+        <ng-container matColumnDef="conversationDone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Conversation Done </th>
+          <td mat-cell *matCellDef="let element"> {{element.conversationDone}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="followup">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Follow-up-Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.followup | date: 'dd-MM-yyyy'}} </td>
+        </ng-container>
+  
+       
+  
+  
+        <ng-container matColumnDef="remarks">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Remarks </th>
+          <td mat-cell *matCellDef="let element"> {{element.remarks | titlecase}} </td>
+        </ng-container>
+
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"  ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" ></tr>
+      </table>
+  
+      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20, 30]" showFirstLastButtons></mat-paginator>
+    </mat-card>
+    </div>

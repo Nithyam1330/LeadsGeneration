@@ -1,0 +1,83 @@
+
+<div class="wrapper" >
+   
+  <div>
+      <app-nav [isList]="false" [isForm]="true" [isList1]="true" [isForm1]="true"></app-nav>
+    </div>
+    <mat-card>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+    
+    <table mat-table matSort [dataSource]="dataSource" (matSortChange)="sortChange($event)">
+        <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef>S.NO</th>
+            <td mat-cell *matCellDef="let i = index">{{i + 1}}</td>
+          </ng-container>
+          
+      <ng-container matColumnDef="employeeName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.employeeName | titlecase }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="source">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Source </th>
+        <td mat-cell *matCellDef="let element"> {{element.source | titlecase}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="destination">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
+        <td mat-cell *matCellDef="let element"> {{element.destination | titlecase}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="customerName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerName | titlecase}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="bookingDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Enquiry Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.bookingDate | date: 'dd-MM-yyyy'}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="customerContact">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Contact </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerContact}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="travelDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Travel Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.travelDate | date: 'dd-MM-yyyy'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="customerEmail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerEmail}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Passengers">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Passengers </th>
+          <td mat-cell *matCellDef="let element"> {{element.Passengers}} </td>
+        </ng-container>
+
+      <ng-container matColumnDef="remark">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Remarks </th>
+        <td mat-cell *matCellDef="let element"> {{element.remark | titlecase}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="product">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product </th>
+        <td mat-cell *matCellDef="let element"> {{element.product}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"  ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" ></tr>
+    </table>
+ 
+
+    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20, 30]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+  </div>

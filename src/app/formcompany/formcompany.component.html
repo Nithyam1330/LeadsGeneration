@@ -1,0 +1,72 @@
+<div class="wrapper">
+  <div>
+      <app-nav [isList]="true" [isForm]="true" [isList1]="true" [isForm1]="false"> </app-nav>
+    </div>
+<div class="container">
+  <div class="form-row">
+    <form #form="ngForm" class="form-horizontal" (ngSubmit)="save()">
+      <div class="col-md-5">
+          <div class="form-group">
+              <label for="date" class="control-label">Date<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
+              <input type="date" [min]="today" class="form-control" name="date" id="date" required [(ngModel)]="formData.date">
+            </div>
+        <div class="form-group">
+          <label for="employeeName" class="control-label">Employee Name<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
+          <select class="form-control" name="EmployeeName" id="EmployeeName" required [(ngModel)]="formData.employeeName">
+              <option value="Gopinath">Gopinath </option>
+              <option value="Apsara Sultana">Apsara Sultana</option>
+              <option value="Lavanya">Lavanya </option>
+              </select>
+        </div>
+        <div class="form-group">
+          <label for="companyName" class="control-label">Company Name<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
+          <input type="text" class="form-control" name="companyName" id="companyName" required [(ngModel)]="formData.companyName">
+        </div>
+        <div class="form-group">
+          <label for="concernPerson" class="control-label">Concern Person</label>
+          <input type="text" class="form-control" name="concernPerson" id="concernPerson"  required [(ngModel)]="formData.concernPerson" #concernPerson="ngModel">
+          <app-show-error [control]="concernPerson"></app-show-error>
+        </div>
+        <div class="form-group">
+            <label for="contact" class="control-label">Contact<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
+            <input type="number"  min="0" class="form-control" name="contact" id="contact"  required [(ngModel)]="formData.contact"  #contact="ngModel">
+            <app-show-error [control]="contact"></app-show-error>
+          </div>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+        
+        <div class="form-group">
+          <label for="email" class="control-label">Email</label>
+          <input type="text" class="form-control" name="email" id="email" [(ngModel)]="formData.email" #email="ngModel">
+          <app-show-error [control]="contact"></app-show-error>
+        </div>
+        <div class="form-group">
+            <label for="conversationDone" class="control-label">Conversation Done<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
+           <input type="text" class="form-control" name="conversationDone" id="conversationDone" required [(ngModel)]="formData.conversationDone">
+           </div>
+          <div class="form-group">
+              <label for="followup" class="control-label">Follow up-date</label>
+              <input type="date" [min]="today"  class="form-control" name="followup" id="followup" [(ngModel)]="formData.followup">
+            </div>
+        <div class="form-group">
+            <label for="remarks" class="control-label">Remarks<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i>
+            </label>
+            <textarea class="form-control" name="remarks" id="remarks" rows="5" required [(ngModel)]="formData.remarks"></textarea>
+          </div>
+
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" value="Submit" [disabled]="form.invalid" [ngClass]="form.invalid ? 'disabled' : 'pointer'">
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</div> <!-- end container -->
+</div>
+
+<!-- <input type="phone" class="form-control" id="mobile" [(ngModel)]="bookingdata.details.phone" #phone="ngModel"
+                    [placeholder]="displayValues.mobilePlaceholder" name="mobile" [telephoneNumber]="validationMessages.phoneValidationMessage">
+                <app-show-error [control]="phone"></app-show-error>
+            </div> -->
