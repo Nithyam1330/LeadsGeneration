@@ -1,5 +1,6 @@
 export enum URLS {
     LEADS_CREATOR = '/list/',
-    CORPORATE='/listCompany/'
+    CORPORATE= '/listCompany/',
+    REGISTRATION = '/registration'
 }
 

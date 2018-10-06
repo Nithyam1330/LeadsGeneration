@@ -27,7 +27,7 @@ export class FormComponent implements OnInit {
   }
 
   save() {
-      let url = URLS.LEADS_CREATOR;
+      const url = URLS.LEADS_CREATOR;
     this.db.list(url).push(this.formData).then(res => {
       this.router.navigate(['list']);
     });

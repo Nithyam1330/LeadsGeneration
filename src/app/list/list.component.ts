@@ -10,8 +10,9 @@ import {CustomsortServiceService} from '../customsort-service.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  list: any[]= [];
-  displayedColumns: string[] = ['number','employeeName',  'customerName', 'customerContact', 'customerEmail', 'product', 'source', 'destination',  'bookingDate',  'travelDate','Passengers', 'remark' ];
+  list: any[] = [];
+  displayedColumns: string[] = ['number','employeeName',  'customerName', 'customerContact',
+  'customerEmail', 'product', 'source', 'destination',  'bookingDate',  'travelDate', 'Passengers', 'remark' ];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -22,8 +23,8 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.db.list(URLS.LEADS_CREATOR).snapshotChanges().subscribe(res => {
-      for(let i=0; i< res.length; i++) {
-        let data = res[i].payload.val();
+      for (let i = 0; i < res.length; i++) {
+        const data = res[i].payload.val();
         data['key'] = res[i].key;
         this.list.push(data);
       }
