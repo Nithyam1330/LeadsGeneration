@@ -4,6 +4,9 @@ import {AngularFireDatabase} from 'angularfire2/database';
 import {Login} from './login.model';
 import { URLS } from '../URLS.enum';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../services/local-storage.service';
+import { LOCAL_STORAGE_ENUM } from '../enums/localstorage.enum';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,10 +16,13 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   login: Login;
-  constructor(private db: AngularFireDatabase, private router: Router) { }
+  constructor(private db: AngularFireDatabase, private router: Router,
+    private localStorageService: LocalStorageService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.initFormGroup();
+    this.removeUsername();
   }
   initFormGroup() {
     this.loginForm = new FormGroup({
@@ -36,14 +42,19 @@ export class LoginComponent implements OnInit {
           this.initFormGroup();
         } else {
           if (res[index].payload.val()['password'] === this.login.password) {
+            this.localStorageService.setItem(LOCAL_STORAGE_ENUM.USERNAME, this.login.username);
+            this.authService.isAuthenticated = true;
             this.router.navigate(['dashboard']);
           } else {
             alert('Email or password is wrong');
           }
         }
-      })
+      });
     } else {
       alert('login form is invalid');
     }
+  }
+  removeUsername() {
+    this.localStorageService.removeItem(LOCAL_STORAGE_ENUM.USERNAME);
   }
 }

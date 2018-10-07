@@ -4,6 +4,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { URLS } from '../URLS.enum';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { LocalStorageService } from '../services/local-storage.service';
+import { LOCAL_STORAGE_ENUM } from '../enums/localstorage.enum';
 
 @Component({
   selector: 'app-register',
@@ -11,11 +13,11 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  alreadyChecked = false;
   register: Registration;
   registerURL = URLS.REGISTRATION;
   registerFormGroup: FormGroup;
-  constructor(private db: AngularFireDatabase, private router: Router) { }
+  constructor(private db: AngularFireDatabase, private router: Router, private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.initRegister();
@@ -28,12 +30,14 @@ export class RegisterComponent implements OnInit {
       this.register = this.registerFormGroup.value;
       this.db.list(this.registerURL).snapshotChanges().subscribe(res => {
         const index = res.findIndex(x => x.payload.val()['email'] === this.register.email);
-        console.log(index);
-        if (index === -1) {
-          this.saveRegisteration();
-        } else {
-          alert('already exist');
-          this.initRegister();
+        if (this.alreadyChecked === false) {
+          if (index === -1) {
+            this.localStorageService.setItem(LOCAL_STORAGE_ENUM.USERNAME, this.register.username);
+            this.saveRegisteration();
+          } else {
+            alert('already exist');
+            this.initRegister();
+          }
         }
       });
     } else {
@@ -42,8 +46,9 @@ export class RegisterComponent implements OnInit {
   }
 
   saveRegisteration() {
+    this.alreadyChecked = true;
     this.db.list(this.registerURL).push(this.register).then(res => {
-      this.router.navigate(['register']);
+      this.router.navigate(['dashboard']);
     });
   }
 
