@@ -24,10 +24,9 @@ export class FormcompanyComponent implements OnInit {
   initFormCompanyModel() {
     this.formData = new  FormCompanyModel();
   }
-  
-save(){
+save() {
 
-    let url = URLS.CORPORATE;
+    const url = URLS.CORPORATE;
   this.db.list(url).push(this.formData).then(res => {
     this.router.navigate(['listCompany']);
 });

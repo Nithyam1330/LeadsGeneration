@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { AuthService } from './auth.service';
 const routes: Routes = [
   {
     path: '',
@@ -24,23 +25,28 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthService]
   },
   {
     path: 'form',
-    component: FormComponent
+    component: FormComponent,
+    canActivate: [AuthService]
   },
   {
     path: 'list',
-    component: ListComponent
+    component: ListComponent,
+    canActivate: [AuthService]
   },
   {
     path: 'formCompany',
-    component: FormcompanyComponent
+    component: FormcompanyComponent,
+    canActivate: [AuthService]
   },
   {
     path: 'listCompany',
-    component: ListcompanyComponent
+    component: ListcompanyComponent,
+    canActivate: [AuthService]
   }
 ];
 

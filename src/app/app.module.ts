@@ -19,6 +19,8 @@ import { LoginComponent } from './login/login.component';
 import { ShowErrorComponent } from './show-error/show-error.component';
 import { EmailValidatorDirective } from './directives/EmailValidator';
 import { PhoneNumberValidatorDirective } from './directives/PhoneNumberValidator';
+import {LocalStorageService} from './services/local-storage.service';
+
 import {
   MatCardModule,
   MatInputModule,
@@ -30,6 +32,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { ConfimValidationDirective } from './directives/confim-validation.directive';
+import { AuthService } from './auth.service';
 
 
 var config = {
@@ -77,7 +80,9 @@ var config = {
   providers: [
     CustomsortServiceService,
     EmailValidatorDirective,
-    PhoneNumberValidatorDirective
+    PhoneNumberValidatorDirective,
+    LocalStorageService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

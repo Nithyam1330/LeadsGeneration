@@ -3,6 +3,7 @@ import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {URLS} from '../URLS.enum';
 import {CustomsortServiceService} from '../services/customsort-service.service';
+import { LocalStorageService } from '../services/local-storage.service';
 @Component({
   selector: 'app-listcompany',
   templateUrl: './listcompany.component.html',
@@ -17,12 +18,13 @@ export class ListcompanyComponent implements OnInit {
   pageSize: number;
   @ViewChild('example') example;
   constructor(private db: AngularFireDatabase,
-    private customsortService:  CustomsortServiceService) { }
+    private customsortService:  CustomsortServiceService,
+  private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.db.list(URLS.CORPORATE).snapshotChanges().subscribe(res => {
-      for(let i=0; i< res.length; i++) {
-        let data = res[i].payload.val();
+      for (let i = 0; i < res.length; i++) {
+        const data = res[i].payload.val();
         data['key'] = res[i].key;
         this.listcompany.push(data);
       }
