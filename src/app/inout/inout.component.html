@@ -1,0 +1,34 @@
+<div class="wrapper">
+        <div>
+            <app-nav ></app-nav>
+          </div>
+
+          <mat-card>
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+          </mat-form-field>
+          <table mat-table matSort [dataSource]="dataSource">
+      
+              <ng-container matColumnDef="number">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>S.NO</th>
+                  <td mat-cell *matCellDef="let i = index">{{i + 1}}</td>
+                </ng-container>
+              
+            <ng-container matColumnDef="checkin">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>check In </th>
+                  <td mat-cell *matCellDef="let element"> {{element.checkin}} </td>
+              </ng-container>
+    
+            <ng-container matColumnDef="checkout">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Check Out </th>
+              <td mat-cell *matCellDef="let element"> {{element.checkout }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"  ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" ></tr>
+          </table>
+      
+          <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20, 30]" showFirstLastButtons></mat-paginator>
+        </mat-card>
+        </div>
+ 

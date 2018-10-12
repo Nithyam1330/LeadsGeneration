@@ -28,11 +28,11 @@ import {
   MatSortModule,
   MatTableModule
 } from '@angular/material';
-import { RegisterComponent } from './register/register.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
 import { ConfimValidationDirective } from './directives/confim-validation.directive';
 import { AuthService } from './auth.service';
+import { InoutComponent } from './inout/inout.component';
 
 
 var config = {
@@ -55,10 +55,9 @@ var config = {
     ListcompanyComponent,
     LoginComponent,
     ShowErrorComponent,
-    RegisterComponent,
     DashboardComponent,
-    HomeComponent,
-    ConfimValidationDirective
+    ConfimValidationDirective,
+    InoutComponent
   ],
   imports: [
     BrowserModule,

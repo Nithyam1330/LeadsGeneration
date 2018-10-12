@@ -1,35 +1,38 @@
 <div class="wrapper">
-  <div>
-      <app-nav [isList]="true" [isForm]="true" [isList1]="true" [isForm1]="false"> </app-nav>
-    </div>
+    <div>
+        <app-nav></app-nav>
+      </div>
 <div class="container">
   <div class="form-row">
     <form #form="ngForm" class="form-horizontal" (ngSubmit)="save()">
       <div class="col-md-5">
           <div class="form-group">
               <label for="date" class="control-label">Date<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
-              <input type="date" [min]="today" class="form-control" name="date" id="date" required [(ngModel)]="formData.date">
+              <input type="date" [min]="today" class="form-control" name="date" id="date" required [(ngModel)]="formData.date" #date="ngModel">
+              <app-show-error [control]="date"></app-show-error>
             </div>
         <div class="form-group">
           <label for="employeeName" class="control-label">Employee Name<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
-          <select class="form-control" name="EmployeeName" id="EmployeeName" required [(ngModel)]="formData.employeeName">
+          <select class="form-control" name="EmployeeName" id="EmployeeName" required [(ngModel)]="formData.employeeName" #EmployeeName="ngModel">
               <option value="Gopinath">Gopinath </option>
               <option value="Apsara Sultana">Apsara Sultana</option>
               <option value="Lavanya">Lavanya </option>
               </select>
+              <app-show-error [control]="EmployeeName"></app-show-error>
         </div>
         <div class="form-group">
           <label for="companyName" class="control-label">Company Name<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
-          <input type="text" class="form-control" name="companyName" id="companyName" required [(ngModel)]="formData.companyName">
+          <input type="text" class="form-control" name="companyName" id="companyName" required [(ngModel)]="formData.companyName" #companyName="ngModel">
+          <app-show-error [control]="companyName"></app-show-error>
         </div>
         <div class="form-group">
           <label for="concernPerson" class="control-label">Concern Person</label>
-          <input type="text" class="form-control" name="concernPerson" id="concernPerson"  required [(ngModel)]="formData.concernPerson" #concernPerson="ngModel">
-          <app-show-error [control]="concernPerson"></app-show-error>
+          <input type="text" class="form-control" name="concernPerson" id="concernPerson"  required [(ngModel)]="formData.concernPerson" >
+     
         </div>
         <div class="form-group">
             <label for="contact" class="control-label">Contact<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
-            <input type="number"  min="0" class="form-control" name="contact" id="contact"  required [(ngModel)]="formData.contact"  #contact="ngModel">
+            <input type="number"  min="0" maxlength="15"  class="form-control" name="contact" id="contact"  required [(ngModel)]="formData.contact"  #contact="ngModel">
             <app-show-error [control]="contact"></app-show-error>
           </div>
       </div>
@@ -38,13 +41,13 @@
         
         <div class="form-group">
           <label for="email" class="control-label">Email</label>
-          <input type="text" class="form-control" name="email" id="email" [(ngModel)]="formData.email" #email="ngModel">
-          <app-show-error [control]="contact"></app-show-error>
+          <input type="text" class="form-control" name="email" id="email" [(ngModel)]="formData.email" >
         </div>
         <div class="form-group">
             <label for="conversationDone" class="control-label">Conversation Done<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
-           <input type="text" class="form-control" name="conversationDone" id="conversationDone" required [(ngModel)]="formData.conversationDone">
-           </div>
+           <input type="text" class="form-control" name="conversationDone" id="conversationDone" required [(ngModel)]="formData.conversationDone" #conversationDone="ngModel">
+           <app-show-error [control]="conversationDone"></app-show-error>
+          </div>
           <div class="form-group">
               <label for="followup" class="control-label">Follow up-date</label>
               <input type="date" [min]="today"  class="form-control" name="followup" id="followup" [(ngModel)]="formData.followup">
@@ -52,7 +55,8 @@
         <div class="form-group">
             <label for="remarks" class="control-label">Remarks<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i>
             </label>
-            <textarea class="form-control" name="remarks" id="remarks" rows="5" required [(ngModel)]="formData.remarks"></textarea>
+            <textarea class="form-control" name="remarks" id="remarks" rows="5" cols="20" required [(ngModel)]="formData.remarks" #remarks="ngModel"></textarea>
+            <app-show-error [control]="remarks"></app-show-error>   
           </div>
 
         <div class="form-group">

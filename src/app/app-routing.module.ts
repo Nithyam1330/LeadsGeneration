@@ -5,10 +5,9 @@ import { ListComponent } from './list/list.component';
 import { FormcompanyComponent } from './formcompany/formcompany.component';
 import { ListcompanyComponent } from './listcompany/listcompany.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
 import { AuthService } from './auth.service';
+import { InoutComponent } from './inout/inout.component';
 const routes: Routes = [
   {
     path: '',
@@ -17,11 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
+    component: LoginComponent,
   },
   {
     path: 'dashboard',
@@ -47,7 +42,11 @@ const routes: Routes = [
     path: 'listCompany',
     component: ListcompanyComponent,
     canActivate: [AuthService]
-  }
+  },
+  {
+    path:'inout',
+    component: InoutComponent 
+  },
 ];
 
 @NgModule({

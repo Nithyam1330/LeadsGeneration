@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from '../services/local-storage.service';
 import { LOCAL_STORAGE_ENUM } from '../enums/localstorage.enum';
 import { AuthService } from '../auth.service';
+import { Validators} from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,11 +23,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.initFormGroup();
-    this.removeUsername();
+    this.removeLocalStorageData();
   }
   initFormGroup() {
     this.loginForm = new FormGroup({
-      username: new FormControl(),
+      username: new FormControl( '', Validators.required),
       password: new FormControl()
     });
   }
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const URL = URLS.REGISTRATION;
       this.db.list(URL).snapshotChanges().subscribe(res => {
-        const index = res.findIndex(x => x.payload.val()['email'] === this.login.username);
+        const index = res.findIndex(
+        (x => x.payload.val()['username'] === this.login.username ));
         if (index === -1) {
           alert('No user Exist');
           this.initFormGroup();
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
             this.authService.isAuthenticated = true;
             this.router.navigate(['dashboard']);
           } else {
-            alert('Email or password is wrong');
+            alert('username or password is wrong');
           }
         }
       });
@@ -54,7 +56,8 @@ export class LoginComponent implements OnInit {
       alert('login form is invalid');
     }
   }
-  removeUsername() {
-    this.localStorageService.removeItem(LOCAL_STORAGE_ENUM.USERNAME);
+  removeLocalStorageData() {
+    const localStorageKeys = Object.values(LOCAL_STORAGE_ENUM);
+    this.localStorageService.removeAllItems(localStorageKeys);
   }
 }

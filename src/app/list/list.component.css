@@ -1,5 +1,6 @@
 table {
     width: 100%;
+    overflow: visible;
   }
 .mat-card
 {
@@ -20,6 +21,17 @@ table {
 .mat-header-cell{
  background-color:#13425e;
  color:white;
- font-size: 16px;
+ font-size: 18px;
  font-weight: bold;
+ border-right: 1px solid grey;
+align-self: stretch;
+text-align:center;
+}
+
+ .mat-cell{
+border-right: 1px solid grey;
+align-self: stretch;
+text-align: center;
+
+
 }
