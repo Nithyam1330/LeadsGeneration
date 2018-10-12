@@ -15,7 +15,6 @@ export class FormComponent implements OnInit {
     private router: Router,
     private db: AngularFireDatabase) {
       this.today = new Date().toISOString().split('T')[0];
-
   }
 
   ngOnInit() {

@@ -1,0 +1,40 @@
+table {
+    width: 100%;
+    overflow: visible;
+  }
+  .mat-card
+  {
+    width: 50%;
+  margin: 0px 20px 0px 30px;
+  }
+  .mat-form-field {
+  
+    font-size: 14px;
+  }
+  
+  .mat-row{
+    font-weight: bold
+  }
+  .mat-row:nth-child(even){
+  background-color:#D2ECFB ;
+  
+  }
+  .mat-header-cell{
+  background-color:#13425e;
+  color:white;
+  font-size: 18px;
+  font-weight: bold;
+  border-right: 1px solid grey;
+  align-self: stretch;
+  }
+  .mat-sort-header {
+    align-items: center;
+  }
+  
+  .mat-cell{
+  border-right: 1px solid grey;
+  align-self: stretch;
+  text-align: center
+  
+  
+  }

@@ -15,4 +15,10 @@ export class LocalStorageService {
   removeItem(item) {
     localStorage.removeItem(item);
   }
+
+  removeAllItems(items: any[]) {
+    for (let i = 0; i < items.length ; i++) {
+      this.removeItem(items[i]);
+    }
+  }
 }

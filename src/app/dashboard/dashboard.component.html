@@ -1,27 +1,67 @@
 <div class="wrapper">
-  <div>
-    <app-nav> </app-nav>
-  </div>
-  <div class="row">
-    <div class="col-md-5"></div>
-    <div class="col-md-2">
-      <div class="form-group">
-        <div class="form-group "> 
-          <button class="btn btn-primary  btn-block" routerLink="/list" >Leads List </button>
-        </div>&nbsp;
-        <div class="form-group">
-           <button class="btn btn-primary  btn-block" routerLink="/form" >Create Leads</button>
-        </div>&nbsp;
-        <div class="form-group">
-          <button class="btn btn-primary  btn-block" routerLink="/listCompany">Corporate Leads List </button>
-          </div>&nbsp;
-        <div class="form-group">
-          <button class="btn btn-primary btn-block" routerLink="/formCompany"> Create Corporate Leads </button>
-        </div>&nbsp;
-      </div>
+    <header class="navbar navbar-head">
+        <div class="main-header">
+            <div class="container">
+                <ul class="nav navbar-nav navbar-mega-menu navbar-left">
+                    <img alt="" src="../../assets/images/TCTLogocopy.png" width="300px" />
+                </ul>
+                <ul class="nav navbar-nav navbar-mega-menu navbar-right">
+                    <ng-container *ngIf="getCheckInStatus()">
+                        <li class="Link">
+                            <a (click)="checkIn()">Checkin
+                                <i class="fa fa-sign-in"></i>
+                            </a>
+                        </li>
+                    </ng-container>
+                    <li class="Link">
+                        <a (click)="checkout()">Checkout
+                            <i class="fa fa-sign-out"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="logout()" href=""> Log Out
+                            <i class="fa fa-power-off"></i>
+                        </a>
+                    </li>
 
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                <div class="card-container">
+                    <img src="../../assets/images/leads.jpg" alt="" style="width:90%">
+
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-lg btn-block" routerLink="/list">View</button>
+                        </div>&nbsp;
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-lg btn-block" routerLink="/form">Create</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                <div class="card-container">
+                    <img src="../../assets/images/CoLeads.jpg" alt="" style="width:90%">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-lg btn-block" routerLink="/listCompany">View</button>
+                        </div>&nbsp;
+                        <div class="form-group">
+                            <a class="btn btn-primary btn-lg btn-block" routerLink="/formCompany">Create</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-5"></div>
-  </div>
-
 </div>

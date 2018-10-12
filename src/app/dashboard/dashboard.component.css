@@ -1,0 +1,47 @@
+
+.card-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.card-container img {
+    margin-top: 20%;
+    width: 100%;
+    height: auto;
+}
+
+.card-container .btn {
+    top: 50%;
+    left: 50%;
+    transform: translate(4%, -120%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 16px;
+    padding: 12px 57px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+.navbar{
+    background-color:#d4f4f9;
+    font-weight: bold ;
+    font-size: 16px;
+    -webkit-text-fill-color: #3ebeed;
+
+}
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color:#3ebeed;
+    -webkit-text-fill-color: white
+  }
+.navbar-brand
+{ 
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin:0 auto;
+}
+.navbar-toggle {
+    z-index:1;
+}
