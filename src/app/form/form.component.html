@@ -6,7 +6,7 @@
       <div class="form-row">
         <form #form="ngForm" class="form-horizontal" (ngSubmit)="save()" novalidate>
           <div class="col-md-5">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="employeeName" class="control-label">Employee Name<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
               <select  class="form-control" name="employeeName" id="employeeName" required [(ngModel)]="formData.employeeName" #employeeName="ngModel">
                 <option value="Gopinath">Gopinath </option>
@@ -14,7 +14,7 @@
                 <option value="Lavanya">Lavanya </option>
                 </select>
                 <app-show-error [control]="employeeName"></app-show-error>
-            </div>
+            </div> -->
             <div class="form-group">
               <label for="CustomerName" class="control-label">Customer Name<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i></label>
               <input type="text" class="form-control" name="CustomerName" id="CustomerName" required [(ngModel)]="formData.customerName" #CustomerName="ngModel">
