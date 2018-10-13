@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       const URL = URLS.REGISTRATION;
       this.db.list(URL).snapshotChanges().subscribe(res => {
         const index = res.findIndex(
-        (x => x.payload.val()['username'] === this.login.username ));
+        (x => (x.payload.val()['username'] === this.login.username || x.payload.val()['email'] === this.login.username)));
         if (index === -1) {
           alert('No user Exist');
           this.initFormGroup();
