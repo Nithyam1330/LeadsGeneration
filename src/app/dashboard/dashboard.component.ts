@@ -114,7 +114,7 @@ const url = URLS.LOGINTIME + this.todayDate;
 checkout() {
   const url = URLS.LOGINTIME + this.todayDate;
   this.checkInOut.checkOutTime = this.getCurrentTime();
-  this.db.list(url).update(this.key, this.checkInOut).then(res => {
+  this.db.list(url).update(this.key, { checkOutTime : this.checkInOut.checkOutTime} ).then(res => {
     this.localStorageService.setItem(LOCAL_STORAGE_ENUM.CHECK_OUT_STATUS, true);
     this.disableCheckout = true;
     alert('Checkout successfull');

@@ -23,7 +23,8 @@ export class ListcompanyComponent implements OnInit {
     private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
-    this.db.list(URLS.CORPORATE).snapshotChanges().subscribe(res => {
+    this.db.list(URLS.CORPORATE).snapshotChanges(['child_changed']).subscribe(res => {
+      console.log('added or changed');
       for (let i = 0; i < res.length; i++) {
         const data = res[i].payload.val();
         if (data['employeeName'] === this.localStorageService.getLocalItem(LOCAL_STORAGE_ENUM.USERNAME)) {
