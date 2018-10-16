@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {Login} from './login.model';
 import { URLS } from '../URLS.enum';
@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from '../services/local-storage.service';
 import { LOCAL_STORAGE_ENUM } from '../enums/localstorage.enum';
 import { AuthService } from '../auth.service';
-import { Validators} from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -38,13 +37,13 @@ export class LoginComponent implements OnInit {
       const URL = URLS.REGISTRATION;
       this.db.list(URL).snapshotChanges().subscribe(res => {
         const index = res.findIndex(
-        (x => x.payload.val()['username'] === this.login.username ));
+        (x => (x.payload.val()['username'] === this.login.username || x.payload.val()['email'] === this.login.username || x.payload.val()['id'] === this.login.username )));
         if (index === -1) {
           alert('No user Exist');
           this.initFormGroup();
         } else {
           if (res[index].payload.val()['password'] === this.login.password) {
-            this.localStorageService.setItem(LOCAL_STORAGE_ENUM.USERNAME, this.login.username);
+            this.localStorageService.setItem(LOCAL_STORAGE_ENUM.USERNAME, res[index].payload.val()['username']);
             this.authService.isAuthenticated = true;
             this.router.navigate(['dashboard']);
           } else {

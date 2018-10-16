@@ -8,60 +8,69 @@
                 <ul class="nav navbar-nav navbar-mega-menu navbar-right">
                     <ng-container *ngIf="getCheckInStatus()">
                         <li class="Link">
-                            <a (click)="checkIn()">Checkin
+                            <a (click)="checkIn()" id="checkInTime" [(ngModel)]="checkInOut.checkInTime">Checkin
                                 <i class="fa fa-sign-in"></i>
                             </a>
                         </li>
                     </ng-container>
-                    <li class="Link">
-                        <a (click)="checkout()">Checkout
-                            <i class="fa fa-sign-out"></i>
+                    <ng-container *ngIf="!getCheckInStatus() && getCheckoutStatus()">
+                        <li class="Link">
+                            <a (click)="checkout()" id="checkOutTime" [(ngModel)]="checkInOut.checkOutTime">Checkout
+                                <i class="fa fa-sign-out"></i>
+                            </a>
+                        </li>
+                    </ng-container>
+
+                    <li>
+                        <a (click)="logout()"> Log Out
+                            <i class="fa fa-power-off"></i>
                         </a>
                     </li>
                     <li>
-                        <a ng-click="logout()" href=""> Log Out
-                            <i class="fa fa-power-off"></i>
-                        </a>
+                    <a  data-toggle="modal" data-target="#myModal">Profile <i class="fa fa-user"></i></a>
+                       <app-profile></app-profile>
                     </li>
 
                 </ul>
             </div>
         </div>
     </header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-4">
-                <div class="card-container">
-                    <img src="../../assets/images/leads.jpg" alt="" style="width:90%">
+    <ng-container *ngIf="!getCheckInStatus() && getCheckoutStatus()">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                    <div class="card-container">
+                        <img src="../../assets/images/leads.jpg" alt="" style="width:90%">
 
-                    <div class="form-inline">
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-lg btn-block" routerLink="/list">View</button>
-                        </div>&nbsp;
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-lg btn-block" routerLink="/form">Create</button>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-lg btn-block" routerLink="/list">View</button>
+                            </div>&nbsp;
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-lg btn-block" routerLink="/form">Create</button>
+                            </div>
+
                         </div>
-
                     </div>
+
                 </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                    <div class="card-container">
+                        <img src="../../assets/images/CoLeads.jpg" alt="" style="width:90%">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-lg btn-block" routerLink="/listCompany">View</button>
+                            </div>&nbsp;
+                            <div class="form-group">
+                                <a class="btn btn-primary btn-lg btn-block" routerLink="/formCompany">Create</a>
+                            </div>
 
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-4">
-                <div class="card-container">
-                    <img src="../../assets/images/CoLeads.jpg" alt="" style="width:90%">
-                    <div class="form-inline">
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-lg btn-block" routerLink="/listCompany">View</button>
-                        </div>&nbsp;
-                        <div class="form-group">
-                            <a class="btn btn-primary btn-lg btn-block" routerLink="/formCompany">Create</a>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </ng-container>
 </div>

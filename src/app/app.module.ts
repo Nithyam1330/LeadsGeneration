@@ -20,7 +20,7 @@ import { ShowErrorComponent } from './show-error/show-error.component';
 import { EmailValidatorDirective } from './directives/EmailValidator';
 import { PhoneNumberValidatorDirective } from './directives/PhoneNumberValidator';
 import {LocalStorageService} from './services/local-storage.service';
-
+import {RegisterComponent} from './register/register.component'
 import {
   MatCardModule,
   MatInputModule,
@@ -28,13 +28,10 @@ import {
   MatSortModule,
   MatTableModule
 } from '@angular/material';
-
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConfimValidationDirective } from './directives/confim-validation.directive';
 import { AuthService } from './auth.service';
-import { InoutComponent } from './inout/inout.component';
-
-
+import { ProfileComponent } from './profile/profile.component';
 var config = {
   apiKey: 'AIzaSyAkDKb3P0npcMFTF07wG8V0JXLA9NeJF3Q',
   authDomain: 'leads-creator.firebaseapp.com',
@@ -57,7 +54,8 @@ var config = {
     ShowErrorComponent,
     DashboardComponent,
     ConfimValidationDirective,
-    InoutComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   todayDate: string;
   key: string;
   checkInOut: CheckInOut;
+  disableCheckout = false;
   constructor(
     private router: Router,
     private db: AngularFireDatabase,
@@ -30,7 +31,7 @@ export class DashboardComponent implements OnInit {
   }
   logout() {
     localStorage.removeItem('currentUser');
-    this.router.navigateByUrl('/');
+    this.router.navigate(['login']);
   }
 
   ngOnInit() {
@@ -50,8 +51,11 @@ export class DashboardComponent implements OnInit {
         checkInTime: this.getCurrentTime(),
         checkOutTime: ''
       };
+
     this.db.list(url).push(this.checkInOut).then(res => {
-      this.router.navigate(['form']);
+      // this.router.navigate(['inout']);
+      this.localStorageService.setItem(LOCAL_STORAGE_ENUM.CHECK_OUT_STATUS, false);
+      alert('CHECKIN SUCCESSFULL');
     });
     } else {
       alert('Already checked in');
@@ -59,7 +63,31 @@ export class DashboardComponent implements OnInit {
 }
 
 getCheckInStatus() {
-  if (this.localStorageService.getLocalItem(LOCAL_STORAGE_ENUM.CHECKINSTATUS) === '') {
+  if (this.localStorageService.getLocalItem(LOCAL_STORAGE_ENUM.CHECK_IN_STATUS) === '') {
+    this.localStorageService.setItem(LOCAL_STORAGE_ENUM.CHECK_OUT_STATUS, false);
+    return true;
+  } else {
+    return false;
+  }
+}
+
+getCheckOut() {
+  const key = this.localStorageService.getLocalItem(LOCAL_STORAGE_ENUM.CHECK_IN_STATUS);
+  if (key !== undefined && key !== '' && key !== null) {
+  const url = URLS.LOGINTIME + this.todayDate + '/' + key;
+    this.db.list(url).snapshotChanges().subscribe(res => {
+      const data = res[1].payload.val();
+      if (data !== null && data !== undefined && data !== '') {
+        this.localStorageService.setItem(LOCAL_STORAGE_ENUM.CHECK_OUT_STATUS, true);
+      } else {
+        this.localStorageService.setItem(LOCAL_STORAGE_ENUM.CHECK_OUT_STATUS, false);
+      }
+    });
+  }
+}
+
+getCheckoutStatus() {
+  if (this.localStorageService.getLocalItem(LOCAL_STORAGE_ENUM.CHECK_OUT_STATUS) === 'false') {
     return true;
   } else {
     return false;
@@ -80,14 +108,17 @@ const url = URLS.LOGINTIME + this.todayDate;
         break;
       }
     }
-    this.localStorageService.setItem(LOCAL_STORAGE_ENUM.CHECKINSTATUS, this.key);
+    this.localStorageService.setItem(LOCAL_STORAGE_ENUM.CHECK_IN_STATUS, this.key);
+    this.getCheckOut();
   });
 }
 checkout() {
   const url = URLS.LOGINTIME + this.todayDate;
   this.checkInOut.checkOutTime = this.getCurrentTime();
   this.db.list(url).update(this.key, this.checkInOut).then(res => {
-    this.router.navigate(['login']);
+    this.localStorageService.setItem(LOCAL_STORAGE_ENUM.CHECK_OUT_STATUS, true);
+    this.disableCheckout = true;
+    alert('Checkout successfull');
   });
 }
 getCurrentTime() {

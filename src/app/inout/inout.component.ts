@@ -4,6 +4,7 @@ import {AngularFireDatabase} from 'angularfire2/database';
 import {URLS} from '../URLS.enum';
 import {CustomsortServiceService} from '../services/customsort-service.service';
 import { LocalStorageService } from '../services/local-storage.service';
+import { LOCAL_STORAGE_ENUM } from '../enums/localstorage.enum';
 @Component({
   selector: 'app-inout',
   templateUrl: './inout.component.html',
@@ -11,7 +12,7 @@ import { LocalStorageService } from '../services/local-storage.service';
 })
 export class InoutComponent implements OnInit {
   inout: any[]= [];
-  displayedColumns: string[] = ['number', 'checkin', 'checkout'];
+  displayedColumns: string[] = ['todaydate', 'checkInTime', 'checkOutTime'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -25,8 +26,8 @@ export class InoutComponent implements OnInit {
     this.db.list(URLS.LOGINTIME).snapshotChanges().subscribe(res => {
       for (let i = 0; i < res.length; i++) {
         const data = res[i].payload.val();
-        data['key'] = res[i].key;
-        this.inout.push(data);
+         data['key'] = res[i].key;
+          this.inout.push(data);
       }
       this.dataSource = new MatTableDataSource(this.inout);
       this.paginator.pageSize = this.pageSize;
@@ -34,8 +35,6 @@ export class InoutComponent implements OnInit {
       this.dataSource.sort = this.sort;
     })
   }
-
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

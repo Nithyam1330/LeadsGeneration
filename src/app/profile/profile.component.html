@@ -1,0 +1,52 @@
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+            </div>
+            <div class="modal-body">
+                <form  [formGroup]="registerFormGroup" (ngSubmit)="submitRegistration()">
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label for="username" class="control-label">username<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i>
+                          </label>
+                          <input type="text" class="form-control" name="username" id="username" autocomplete="off" formControlName="username"
+                            required>
+                        </div>
+                        <div class="form-group">
+                            <label for="oldpasssword" class="control-label">Old Passsword<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i>
+                            </label>
+                            <input type="password" class="form-control" name="oldpasssword" id="oldpasssword" autocomplete="off" required formControlName="oldpassword">
+                          </div>
+                        <div class="form-group">
+                          <label for="newpasssword" class="control-label">New Passsword<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i>
+                          </label>
+                          <input type="password" class="form-control" name="newpasssword" id="newPasssword" autocomplete="off" required formControlName="password">
+                        </div>
+                        <div class="form-group">
+                          <label for="confirmpasssword" class="control-label">Confirm Passsword<i class="fa fa-asterisk" style="font-size:6px;color:red; position: absolute;"></i>
+                          </label>
+                          <input type="password" appConfimValidation="newpassword" class="form-control" name="confirmPassword" id="confirmPassword" autocomplete="off" required formControlName="confirmPassword">
+                       </div>
+                  
+                        <div class="form-group">
+                          <input type="submit" class="btn btn-info" value="save">
+                        </div>
+                  
+                  
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+                  </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>

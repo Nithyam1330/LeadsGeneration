@@ -7,7 +7,8 @@ import { ListcompanyComponent } from './listcompany/listcompany.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthService } from './auth.service';
-import { InoutComponent } from './inout/inout.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
   {
     path: '',
@@ -44,8 +45,13 @@ const routes: Routes = [
     canActivate: [AuthService]
   },
   {
-    path:'inout',
-    component: InoutComponent 
+    path: 'register',
+    component: RegisterComponent ,
+    // canActivate: [AuthService]
+  },
+  {
+    path:'profile',
+    component:ProfileComponent ,
   },
 ];
 
