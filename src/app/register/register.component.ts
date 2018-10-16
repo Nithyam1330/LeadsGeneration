@@ -25,8 +25,6 @@ export class RegisterComponent implements OnInit {
   }
 
   submitRegistration() {
-    // this.saveRegisteration();
-    console.log(this.registerFormGroup);
     if (this.registerFormGroup.valid) {
       this.register = this.registerFormGroup.value;
       this.db.list(this.registerURL).snapshotChanges().subscribe(res => {

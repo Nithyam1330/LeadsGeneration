@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import {URLS} from '../URLS.enum';
 import { LocalStorageService } from '../services/local-storage.service';
 import { LOCAL_STORAGE_ENUM } from '../enums/localstorage.enum';
-import { map } from 'rxjs/operators';
 import { CheckInOut } from './dashboard.model';
 
 
