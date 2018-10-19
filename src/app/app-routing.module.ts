@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthService } from './auth.service';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 const routes: Routes = [
   {
     path: '',
@@ -47,12 +48,21 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent ,
-    // canActivate: [AuthService]
   },
   {
-    path:'profile',
-    component:ProfileComponent ,
+    path: 'profile',
+    component: ProfileComponent ,
+    canActivate: [AuthService]
   },
+  {
+    path: '404',
+    component: PageNotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/404',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
