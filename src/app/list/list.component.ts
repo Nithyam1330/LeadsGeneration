@@ -6,6 +6,7 @@ import { URLS } from '../URLS.enum';
 import { CustomsortServiceService } from '../services/customsort-service.service';
 import { LocalStorageService } from '../services/local-storage.service';
 import { LOCAL_STORAGE_ENUM } from '../enums/localstorage.enum';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -14,7 +15,7 @@ import { LOCAL_STORAGE_ENUM } from '../enums/localstorage.enum';
 export class ListComponent implements OnInit {
   list: any[] = [];
   displayedColumns: string[] = ['number', 'employeeName', 'customerName', 'customerContact',
-    'customerEmail', 'product', 'source', 'destination', 'bookingDate', 'travelDate', 'Passengers', 'remark'];
+    'customerEmail', 'product', 'source', 'destination', 'bookingDate', 'travelDate', 'Passengers', 'remark', 'edit'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -22,7 +23,8 @@ export class ListComponent implements OnInit {
   @ViewChild('example') example;
   constructor(private db: AngularFireDatabase,
     private customsortService: CustomsortServiceService,
-    private localStorageService: LocalStorageService) { }
+    private localStorageService: LocalStorageService,
+    private router: Router) { }
 
   ngOnInit() {
     this.db.list(URLS.LEADS_CREATOR).snapshotChanges().subscribe(res => {
@@ -42,6 +44,15 @@ export class ListComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  edit(key) {
+    console.log(key);
+    this.router.navigate(['form'], {
+      queryParams: {
+        random: key
+      }
+    });
   }
 
   sortChange(eve) {

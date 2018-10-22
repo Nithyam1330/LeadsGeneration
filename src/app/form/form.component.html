@@ -63,7 +63,7 @@
             </div>
             <br>
             <div class="form-group">
-              <input type="submit"  class="btn btn-info" value="Submit" [disabled]="form.invalid"  [ngClass]="form.invalid ? 'disabled' : 'pointer' ">
+              <input type="submit"  class="btn btn-info" [value]="isEdit ? 'Update' : 'Submit'" [disabled]="form.invalid"  [ngClass]="form.invalid ? 'disabled' : 'pointer' ">
             </div>
           </div>
         </form>

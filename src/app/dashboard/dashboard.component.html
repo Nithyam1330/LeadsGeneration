@@ -8,14 +8,14 @@
                 <ul class="nav navbar-nav navbar-mega-menu navbar-right">
                     <ng-container *ngIf="getCheckInStatus()">
                         <li class="Link">
-                            <a (click)="checkIn()" id="checkInTime" [(ngModel)]="checkInOut.checkInTime">Checkin
+                            <a (click)="checkIn()" id="checkInTime">Checkin
                                 <i class="fa fa-sign-in"></i>
                             </a>
                         </li>
                     </ng-container>
                     <ng-container *ngIf="!getCheckInStatus() && getCheckoutStatus()">
                         <li class="Link">
-                            <a (click)="checkout()" id="checkOutTime" [(ngModel)]="checkInOut.checkOutTime">Checkout
+                            <a (click)="checkout()" id="checkOutTime">Checkout
                                 <i class="fa fa-sign-out"></i>
                             </a>
                         </li>
