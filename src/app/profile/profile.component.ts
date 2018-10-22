@@ -47,7 +47,6 @@ export class ProfileComponent implements OnInit {
                 alert('Both Password did not match');
               }
           } else {
-            alert('User name or password may be wrong');
             this.initProfile();
           }
           }
