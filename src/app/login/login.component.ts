@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
         } else {
           if (res[index].payload.val()['password'] === this.login.password) {
             this.localStorageService.setItem(LOCAL_STORAGE_ENUM.USERNAME, res[index].payload.val()['username']);
+            this.localStorageService.setItem(LOCAL_STORAGE_ENUM.ID, res[index].payload.val()['id']);
             this.authService.isAuthenticated = true;
             this.router.navigate(['dashboard']);
           } else {

@@ -9,7 +9,12 @@ import { LOCAL_STORAGE_ENUM } from './enums/localstorage.enum';
 export class AuthService {
   isAuthenticated = false;
   constructor(private localStorageService: LocalStorageService, private router: Router) {
-    this.isAuthenticated = this.localStorageService.getLocalItem(LOCAL_STORAGE_ENUM.USERNAME) ? true : false;
+    console.log(this.router.url);
+    if (this.router.url !== '/login' && this.router.url !== '/register' && this.router.url !== '404') {
+      this.isAuthenticated = this.localStorageService.getLocalItem(LOCAL_STORAGE_ENUM.USERNAME) ? true : false;
+    } else {
+      this.isAuthenticated = false;
+    }
   }
 
     canActivate(routerStateSnapshot: RouterStateSnapshot,

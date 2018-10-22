@@ -32,6 +32,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConfimValidationDirective } from './directives/confim-validation.directive';
 import { AuthService } from './auth.service';
 import { ProfileComponent } from './profile/profile.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 var config = {
   apiKey: 'AIzaSyAkDKb3P0npcMFTF07wG8V0JXLA9NeJF3Q',
   authDomain: 'leads-creator.firebaseapp.com',
@@ -55,7 +56,8 @@ var config = {
     DashboardComponent,
     ConfimValidationDirective,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

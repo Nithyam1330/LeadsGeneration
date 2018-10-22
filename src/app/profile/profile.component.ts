@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Profile } from './profile.model';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { URLS } from '../URLS.enum';
+import { LocalStorageService } from '../services/local-storage.service';
+import { LOCAL_STORAGE_ENUM } from '../enums/localstorage.enum';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +15,7 @@ export class ProfileComponent implements OnInit {
   registerFormGroup: FormGroup;
   profile: Profile;
   alreadyChecked = false;
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private localStroageService: LocalStorageService) { }
 
   ngOnInit() {
     this.initProfile();
@@ -26,11 +28,13 @@ export class ProfileComponent implements OnInit {
       password: new FormControl(),
       confirmPassword: new FormControl(),
     });
+    this.alreadyChecked = false;
   }
 
   changePassword() {
     if (this.registerFormGroup.valid) {
       this.profile = this.registerFormGroup.value;
+      this.profile.id = this.localStroageService.getLocalItem(LOCAL_STORAGE_ENUM.ID);
       this.db.list(URLS.REGISTRATION).snapshotChanges().subscribe(res => {
         if (this.alreadyChecked === false) {
           const index = res.findIndex(
@@ -59,8 +63,10 @@ export class ProfileComponent implements OnInit {
     this.db.list(URLS.REGISTRATION).update(key, {confirmPassword: this.profile.confirmPassword, password: this.profile.password})
     .then(res => {
       alert('Updated successfully');
+      this.initProfile();
     }).catch(e => {
       alert('Update failed');
+      this.initProfile();
     });
   }
 
